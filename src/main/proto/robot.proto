@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package robot;
+
+service RobotTestService {
+  rpc SetTestRobotStatus(TestRobotStatus) returns (TestRobotStatusResponse) {}
+}
+
+message TestRobotStatus {
+  string 	serverId = 1;
+  int32		robotCount = 2;
+  repeated StepInfo stepInfos = 3;
+}
+
+message TestRobotStatusResponse {
+	bool isSuccess = 1;
+	string message = 2;
+}
+
+// Specifies settings for multi-cluster allocation.
+message StepInfo {
+	int32 taskId 			= 1;
+  int32 finishCount = 2;
+}
